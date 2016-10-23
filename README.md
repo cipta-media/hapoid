@@ -6,8 +6,9 @@ Hapol is an error detector for your PO files
 Usage: hapol COMMAND [OPTIONS] [ARGS]...
 
 Commands:
+  about                     Show Hapol about message
   help                      Show this message and exit
-  help <topic>              Display help message for the selected topic
+  help <topic>              Show help message for the selected topic
   check <pofile>            Finding errors on .po file
   check <pofile> <options>  Finding errors on .po file with an option
 

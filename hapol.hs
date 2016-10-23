@@ -18,11 +18,15 @@ versionAttribute = "alpha"
 released = ""
 
 -- Information
+about = ["Hapol " ++ version ++ " by Wisnu Adi Nurcahyo",
+         "Released at <not released yet>"]
+
 information = ["Usage: hapol COMMAND [OPTIONS] [ARGS]...",
                "",
                "Commands:",
+               "  about                     Show Hapol about message",
                "  help                      Show this message and exit",
-               "  help <topic>              Display help message for the selected topic",
+               "  help <topic>              Show help message for the selected topic",
                "  check <pofile>            Finding errors on .po file",
                "  check <pofile> <options>  Finding errors on .po file with an option",
                "",
@@ -49,12 +53,13 @@ errorIn typ msg' = do
 singleCmd :: [String] -> String
 singleCmd (arg:_) = do
   case arg of "help"    -> unlines information
+              "about"   -> unlines about
               "check"   -> errorIn "cmd" "check"
               "--fuzzy" -> errorIn "opt" []
               _         -> errorIn [] arg
 
 -- Command Parser
-command = ["help", "check"]
+command = ["help", "check", "about"]
 
 commander :: [String] -> IO ()
 commander args = do

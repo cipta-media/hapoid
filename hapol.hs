@@ -1,5 +1,9 @@
 {-
-  Hapol - A 
+  Hapol - Hapol is an error detector for your PO files
+
+  Author:       Wisnu Adi Nurcahyo
+  Contact:      <wisnu@nurcahyo.me>
+  URL:          github.com/wisn/hapol
 -}
 
 import System.IO

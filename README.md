@@ -1,5 +1,5 @@
-# Hapol
-Hapol is an error detector for your PO files
+# Hapoid
+Hapoid is an error detector for your Bahasa Indonesia PO files
 
 ## Overview
 ```

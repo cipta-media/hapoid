@@ -1,5 +1,5 @@
 {-
-  Hapol - Hapol is an error detector for your PO files
+  Hapoid - Hapoid is an error detector for your Bahasa Indonesia PO files
 
   Author:       Wisnu Adi Nurcahyo
   Contact:      <wisnu@nurcahyo.me>
@@ -22,13 +22,13 @@ versionAttribute = "alpha"
 released = ""
 
 -- Information
-about = ["Hapol " ++ version ++ " by Wisnu Adi Nurcahyo",
+about = ["Hapoid " ++ version ++ " by Wisnu Adi Nurcahyo",
          "Released at <not released yet>"]
 
-information = ["Usage: hapol COMMAND [OPTIONS] [ARGS]...",
+information = ["Usage: hapoid COMMAND [OPTIONS] [ARGS]...",
                "",
                "Commands:",
-               "  about                     Show Hapol about message",
+               "  about                     Show Hapoid about message",
                "  help                      Show this message and exit",
                "  help <topic>              Show help message for the selected topic",
                "  check <pofile>            Finding errors on .po file",
@@ -42,7 +42,7 @@ displayInformation = do
   putStr $ unlines information
   exitSuccess
 
-moreInformation = "Type \"hapol help\" for more information!"
+moreInformation = "Type \"hapoid help\" for more information!"
 
 errorIn :: String -> String -> String
 errorIn typ msg' = do

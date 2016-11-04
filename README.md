@@ -1,25 +1,30 @@
 # Hapoid
-Hapoid is an error detector for your Bahasa Indonesia PO files
+A reviewer for your Bahasa Indonesia PO files
+
+## Installation
+```
+git clone https://github.com/wisn/hapoid.git
+cd hapoid
+ghc hapoid.hs
+sudo mv hapoid /usr/bin/hapoid
+```
 
 ## Overview
 ```
-Usage: hapol COMMAND [OPTIONS] [ARGS]...
+Usage: hapoid COMMAND [PATH] [OPTION] [ARGS]...
 
-Commands:
-  about                     Show Hapol about message
-  help                      Show this message and exit
-  help <topic>              Show help message for the selected topic
-  check <pofile>            Finding errors on .po file
-  check <pofile> <options>  Finding errors on .po file with an option
+Commands
+help       Display this message
+about      Display about message
 
-Options:
-  --fuzzy                   Treat all fuzzy translation as an error
+
+Options
+--fuzzy    Review all fuzzy-translations
 ```
 
 ## Progress
 ### Command Parser
-- [DONE] Parse one command
-- [ONGOING] Parse multiple commands
+- [ONGOING] Refactor
 
 ### Detector
 Soon...

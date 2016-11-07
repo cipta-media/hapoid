@@ -29,7 +29,7 @@ Options
 ```
 
 ## Progress
-### Command Parser
+### Main
 - [DONE] Refactor
 - [DONE] Command Parser
 - [DONE] Path Finder
@@ -37,4 +37,4 @@ Options
 - [ONGOING] PO Checker
 
 ### Detector
-Ongoing...
+- [ONGOING] PO Data Collector

@@ -8,6 +8,7 @@
 
 import System.IO
 import System.Exit
+import System.Directory
 import System.Environment
 import Control.Monad
 
@@ -24,8 +25,10 @@ name   = "Hapoid"
 author = "Wisnu Adi Nurcahyo"
 
 -- Commands
-commands = ["help", "       Display this message",
-            "about", "      Display about message"]
+commands = ["help",  "           Display this message",
+            "check", "          Check id.po file in the current directory",
+            "check <path>", "   Check file in the specified path",
+            "about", "          Display about message"]
 
 -- Options
 options = ["--fuzzy", "    Review all fuzzy-translations"]
@@ -38,43 +41,67 @@ extract :: [String] -> [String]
 extract [] = []
 extract (cmd:inf:next) = [cmd ++ inf] ++ (extract next)
 
+getCmd :: String -> String
+getCmd input
+  | isOption input = ""
+  | otherwise      = input
+
 isOption :: String -> Bool
 isOption arg
   | (arg !! 0) == '-' && (arg !! 1) == '-' = True
   | otherwise = False
 
-parseCmd :: String -> String
-parseCmd input
-  | isOption input = ""
-  | otherwise      = input
+getOption :: [String] -> String
+getOption []     = []
+getOption (x:xs)
+  | isOption x = x ++ " " ++ (getOption xs)
+  | otherwise  = getOption xs
 
-parsePath :: String -> String
-parsePath input
-  | null input     = ""
-  | isOption input = ""
-  | otherwise      = input
-
-parseOpts :: [String] -> String
-parseOpts input
-  | length input == 0     = ""
-  | isOption (head input) = unwords input
-  | otherwise             = ""
+getPath :: String -> String
+getPath str
+  | not (isOption str) = str
+  | otherwise          = "."
 
 parse :: [String] -> [String]
 parse (arg:args) = do
-  let path' = if (null args) then "" else head args
-      opts' = if (null args) then [] else args
-      cmd   = parseCmd arg
-      path  = parsePath path'
-      opts  = parseOpts opts'
+  let cmd   = getCmd arg
+      path' = if args == [] then ["."] else args
+      path  = getPath (head path')
+      opts  = getOption args
 
       result = cmd ++ " " ++ path ++ " " ++ opts
 
-  return $ result
+  return result
+
+check :: String -> String -> IO ()
+check path' opts' = do
+  putStrLn $ name ++ " " ++ version
+  putStrLn []
+
+  loc  <- getCurrentDirectory
+
+  let path = if path' == "." then "id.po" else path'
+      opts = if opts' == "" then [] else words opts'
+      file  = if path == "id.po"
+                then loc ++ "/" ++ path
+                else path
+
+  exist <- doesFileExist file
+
+  if exist
+    then do
+      putStrLn $ "[ ! ] Checking " ++ file ++ " ..."
+      putStrLn []
+    else
+      putStrLn $ "[!!!] File " ++ file ++ " didn't exist!"
+
+  putStrLn []
 
 -- Messages
-about = [name ++ " " ++ version ++ " by " ++ author,
-         "Released at " ++ released]
+about = ["",
+         name ++ " " ++ version ++ " by " ++ author,
+         "Released at " ++ released,
+         ""]
 help  = ["Usage: hapoid COMMAND [PATH] [OPTION] [ARGS]...",
          "",
          "Commands",
@@ -87,20 +114,22 @@ help  = ["Usage: hapoid COMMAND [PATH] [OPTION] [ARGS]...",
 -- Executor
 execute :: String -> String -> String -> IO ()
 execute cmd path opts
-  | cmd == "help" = display help
+  | cmd == "help"  = display help
   | cmd == "about" = display about
-  | otherwise = display ["Command unknown!",
-                         "Please check available commands with \"hapoid help\"!"]
+  | cmd == "check" = check path opts
+  | otherwise = display ["",
+                         "[!!!] Unknown command!",
+                         "[ ! ] Please check available commands with \"hapoid help\"!",
+                         ""]
 
 run :: [String] -> IO ()
 run args = do
-  let input = parse args
-      cmd   = head input
-      path  = input !! 1
-      opts  = last input
+  let str   = words $ unwords $ parse args
+      cmd   = head str
+      path  = str !! 1
+      opts  = last str
 
-  --execute cmd path opts
-  print input
+  execute cmd path opts
 
 -- Main
 main = do

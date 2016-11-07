@@ -75,6 +75,9 @@ parse (arg:args) = do
 
   return result
 
+showSucc :: String -> String
+showSucc msg = "[" ++ "\x1b[32m" ++ "INFO" ++ "\x1b[0m" ++ "] " ++ msg
+
 showInfo :: String -> String
 showInfo msg = "[" ++ "\x1b[34m" ++ "INFO" ++ "\x1b[0m" ++ "] " ++ msg
 

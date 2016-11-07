@@ -2,7 +2,7 @@
 A reviewer for your Bahasa Indonesia PO files
 
 ## Requirements
-- GHC >= 8.1
+- GHC >= 8.0.1
 
 ## Installation
 ```

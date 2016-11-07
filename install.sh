@@ -17,7 +17,7 @@ rm hapoid.hi
 rm hapoid.o
 
 echo ""
-echo "Hapoid will be placed at /usr/bin. So, it's need root privilege."
+echo "Hapoid will be placed at /usr/bin/. So, it's need root privilege."
 
 sudo mv hapoid /usr/bin/hapoid
 

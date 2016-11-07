@@ -29,12 +29,9 @@ Options
 ```
 
 ## Progress
-### Main
 - [DONE] Refactor
 - [DONE] Command Parser
 - [DONE] Path Finder
 - [DONE] Install Shell
 - [ONGOING] PO Checker
-
-### Detector
 - [ONGOING] PO Data Collector

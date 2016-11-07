@@ -76,10 +76,13 @@ parse (arg:args) = do
   return result
 
 showInfo :: String -> String
-showInfo msg = "[INFO] " ++ msg
+showInfo msg = "[" ++ "\x1b[34m" ++ "INFO" ++ "\x1b[0m" ++ "] " ++ msg
+
+showWarn :: String -> String
+showWarn msg = "[" ++ "\x1b[33m" ++ "WARN" ++ "\x1b[0m" ++ "] " ++ msg
 
 showErr :: String -> String
-showErr msg = "[ERR] " ++ msg
+showErr msg = "[" ++ "\x1b[31m" ++ "ERR" ++ "\x1b[0m" ++ "]  " ++ msg
 
 simplify :: String -> String
 simplify path = do
@@ -144,7 +147,12 @@ run args = do
       path  = str !! 1
       opts  = last str
 
-  execute cmd path opts
+  if ((cmd == "help" || cmd == "about" || cmd == "version")
+    && ((isOption opts) || path /= "."))
+      then do
+        putStrLn $ showWarn "Given useless argument(s) in this command."
+        execute cmd path opts
+      else execute cmd path opts
 
 -- Main
 main = do

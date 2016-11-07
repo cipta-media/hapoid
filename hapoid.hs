@@ -29,7 +29,8 @@ commands = ["help",  "           Display this message",
             "check", "          Check id.po file in the current directory",
             "check <path>", "   Check file in the specified path i.e \"check my/path\"",
             "", "               will detected as \"my/path/id.po\"",
-            "about", "          Display about message"]
+            "about", "          Display about message",
+            "version", "         Show Hapoid version"]
 
 -- Options
 options = ["--fuzzy", "        Review all fuzzy-translations"]
@@ -74,6 +75,18 @@ parse (arg:args) = do
 
   return result
 
+showInfo :: String -> String
+showInfo msg = "[INFO] " ++ msg
+
+showErr :: String -> String
+showErr msg = "[ERR] " ++ msg
+
+simplify :: String -> String
+simplify path = do
+  if (length path) > 25
+    then reverse $ (take 25 (reverse path)) ++ "..."
+    else path
+
 check :: String -> String -> IO ()
 check path' opts' = do
   putStrLn $ name ++ " " ++ version
@@ -91,10 +104,10 @@ check path' opts' = do
 
   if exist
     then do
-      putStrLn $ "[ ! ] Checking " ++ file ++ " ..."
+      putStrLn $ showInfo ("Checking " ++ simplify file)
       putStrLn []
     else
-      putStrLn $ "[!!!] File " ++ file ++ " didn't exist!"
+      putStrLn $ showErr ("File " ++ (simplify file) ++ " didn't exist!")
 
   putStrLn []
 
@@ -115,12 +128,13 @@ help  = ["Usage: hapoid COMMAND [PATH] [OPTION] [ARGS]...",
 -- Executor
 execute :: String -> String -> String -> IO ()
 execute cmd path opts
-  | cmd == "help"  = display help
-  | cmd == "about" = display about
-  | cmd == "check" = check path opts
+  | cmd == "help"    = display help
+  | cmd == "about"   = display about
+  | cmd == "check"   = check path opts
+  | cmd == "version" = display ["", name ++ " " ++ version, ""]
   | otherwise = display ["",
-                         "[!!!] Unknown command!",
-                         "[ ! ] Please check available commands with \"hapoid help\"!",
+                         showErr "Unknown command!",
+                         showInfo "Please check available commands with \"hapoid help\"!",
                          ""]
 
 run :: [String] -> IO ()

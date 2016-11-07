@@ -6,6 +6,7 @@
   URL:          github.com/wisn/hapoid
 -}
 
+-- Libraries
 import System.IO
 import System.Exit
 import System.Directory
@@ -18,8 +19,10 @@ versionMajor     = "0"
 versionMinor     = "0"
 versionRelease   = "1"
 versionAttribute = "alpha"
+
 -- Release
 released = "<not released yet>" -- > Not released yet
+
 -- About
 name   = "Hapoid"
 author = "Wisnu Adi Nurcahyo"
@@ -93,6 +96,7 @@ simplify path = do
     then reverse $ (take 25 (reverse path)) ++ "..."
     else path
 
+-- Checker
 check :: String -> String -> IO ()
 check path' opts' = do
   putStrLn $ name ++ " " ++ version

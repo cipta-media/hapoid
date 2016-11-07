@@ -32,7 +32,7 @@ commands = ["help",  "           Display this message",
             "about", "          Display about message"]
 
 -- Options
-options = ["--fuzzy", "    Review all fuzzy-translations"]
+options = ["--fuzzy", "        Review all fuzzy-translations"]
 
 -- Modules
 display :: [String] -> IO ()

@@ -28,5 +28,7 @@ Options
 --fuzzy        Review all fuzzy-translations
 ```
 
+**NOTE**: Fuzzy option currently didn't work
+
 ## TODO
 - [ONGOING] Add more rules for words suggestion

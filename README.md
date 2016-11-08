@@ -28,10 +28,5 @@ Options
 --fuzzy        Review all fuzzy-translations
 ```
 
-## Progress
-- [DONE] Refactor
-- [DONE] Command Parser
-- [DONE] Path Finder
-- [DONE] Install Shell
-- [ONGOING] PO Checker
-- [ONGOING] PO Data Collector
+## TODO
+- [ONGOING] Add more rules for words suggestion

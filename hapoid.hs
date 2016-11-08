@@ -123,12 +123,14 @@ simplify path = do
     then reverse $ (take 40 (reverse path)) ++ "..."
     else path
 
+-- Check if it's a msgstr
 isMsgstr :: String -> Bool
 isMsgstr text
   | text == ""                      = False
   | (head $ words text) == "msgstr" = True
   | otherwise                       = False
 
+-- Get the msgstr
 getMsgstr :: String -> String
 getMsgstr text' = do
   let text    = words text'

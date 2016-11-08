@@ -12,7 +12,7 @@ command -v ghc >/dev/null 2>&1 || {
 
 echo ""
 
-ghc -O hapoid.hs
+ghc -O2 hapoid.hs
 rm hapoid.hi
 rm hapoid.o
 

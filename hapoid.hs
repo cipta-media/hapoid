@@ -138,6 +138,7 @@ getMsgstr text' = do
     then ""
     else content
 
+-- Give suggestion
 reviewSuggestion :: String -> String -> String
 reviewSuggestion sugg from = "[" ++ (makesBlue "SUGG") ++ "] You may use " ++ (makesBlue sugg) ++ " instead of " ++ (makesRed from)
 
@@ -148,6 +149,7 @@ fixWords text
   | isInfixOf "font" text        = reviewSuggestion "huruf" "font"
   | isInfixOf "update" text      = reviewSuggestion "pembaruan" "update"
   | isInfixOf "diinstalasi" text = reviewSuggestion "dipasang" "diinstalasi"
+  | isInfixOf "%" text           = showWarn "It seems a missing variable"
   | otherwise                    = ""
 
 recursiveCheck :: [String] -> [String]

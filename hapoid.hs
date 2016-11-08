@@ -149,7 +149,6 @@ fixWords text
   | isInfixOf "font" text        = reviewSuggestion "huruf" "font"
   | isInfixOf "update" text      = reviewSuggestion "pembaruan" "update"
   | isInfixOf "diinstalasi" text = reviewSuggestion "dipasang" "diinstalasi"
-  | isInfixOf "%" text           = showWarn "It seems a missing variable"
   | otherwise                    = ""
 
 recursiveCheck :: [String] -> [String]

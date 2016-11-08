@@ -32,3 +32,7 @@ Options
 
 ## TODO
 - [ONGOING] Add more rules for words suggestion
+
+## Contributing
+Currently, Hapoid didn't accept any pull request until reach version 0.0.1 (stable).
+You may submit an issue instead of send a pull request.

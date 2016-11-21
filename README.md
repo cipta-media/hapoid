@@ -30,6 +30,10 @@ Options
 
 **NOTE**: Fuzzy option currently didn't work
 
+## News
+Yo! Hapoid will use external file for the words suggestion.
+So, everyone may contribute to the Bahasa Indonesia words suggestion.
+
 ## TODO
 - [ONGOING] Add more rules for words suggestion
 - [ONGOING] Refactor with better algorithms
